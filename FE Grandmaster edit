@@ -29,7 +29,7 @@ local PASettings = {
         
     },
     Teleportation = {
-        Enabled = false,
+        Enabled = true,
         Key = "t"
     },
     Animations = {
@@ -45,7 +45,7 @@ local PASettings = {
         },
         SprintAnimation = {
             SprintingEnabled = false,
-            Key = "52",
+            Key = "306",
             SprintSpeed = nil,
             AnimationID = nil,
             FrameSpeed = math.huge,
@@ -99,7 +99,7 @@ end
 function Methods:PlaySound(SoundID, Looped)
 	local Sound = Instance.new("Sound", Character.Torso)
 	Sound.SoundId = "rbxassetid://"..SoundID
-	Sound.Volume = 5
+	Sound.Volume = 0.5
 	if Looped then Sound.Looped = true else Sound.Looped = false end
 	Sound:Play()
 end
@@ -356,14 +356,14 @@ if PASettings.Teleportation.Enabled then
 end
 
 Mouse.KeyDown:Connect(function(Key)
-    if not Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and (Key) == Enum.KeyCode.LeftShift then
+    if not Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "306" then
         Sprinting = true
         Humanoid.WalkSpeed = PASettings.Animations.SprintAnimation.SprintSpeed
     end
 end)
 
 Mouse.KeyUp:Connect(function(Key)
-    if Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and (Key) == Enum.KeyCode.LeftShift then
+    if Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "306" then
         Sprinting = false
         Humanoid.WalkSpeed = PASettings.WalkSpeed
     end

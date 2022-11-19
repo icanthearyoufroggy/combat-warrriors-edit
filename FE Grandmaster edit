@@ -4,8 +4,8 @@ local Root = game.Players.LocalPlayer.Character.HumanoidRootPart
 local Version = "v1.0.2"
 print(Version)
 
-Highlight.FillColor = Color3.fromRGB(34, 77, 153)
-Highlight.OutlineColor = Color3.fromRGB(55, 127, 244)
+Highlight.FillColor = Color3.fromRGB(153, 0, 0)
+Highlight.OutlineColor = Color3.fromRGB(244, 0, 0)
 
 getgenv().AntiVoid = true
 getgenv().ShowReal = true
@@ -45,7 +45,7 @@ local PASettings = {
         },
         SprintAnimation = {
             SprintingEnabled = false,
-            Key = "306",
+            Key = "52",
             SprintSpeed = nil,
             AnimationID = nil,
             FrameSpeed = math.huge,
@@ -96,10 +96,10 @@ function Methods:SetWalkSpeed(Value)
     Humanoid.WalkSpeed = Value
 end
 
-function Methods:PlaySound(SoundID, Looped)
+function Methods:PlaySound(SoundID, Looped, Vol)
 	local Sound = Instance.new("Sound", Character.Torso)
 	Sound.SoundId = "rbxassetid://"..SoundID
-	Sound.Volume = 0.5
+	Sound.Volume = Vol
 	if Looped then Sound.Looped = true else Sound.Looped = false end
 	Sound:Play()
 end
@@ -356,14 +356,14 @@ if PASettings.Teleportation.Enabled then
 end
 
 Mouse.KeyDown:Connect(function(Key)
-    if not Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "306" then
+    if not Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "52" then
         Sprinting = true
         Humanoid.WalkSpeed = PASettings.Animations.SprintAnimation.SprintSpeed
     end
 end)
 
 Mouse.KeyUp:Connect(function(Key)
-    if Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "306" then
+    if Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "52" then
         Sprinting = false
         Humanoid.WalkSpeed = PASettings.WalkSpeed
     end

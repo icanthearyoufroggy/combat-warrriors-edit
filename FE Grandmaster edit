@@ -45,7 +45,7 @@ local PASettings = {
         },
         SprintAnimation = {
             SprintingEnabled = false,
-            Key = "52",
+            Key = "0",
             SprintSpeed = nil,
             AnimationID = nil,
             FrameSpeed = math.huge,
@@ -356,14 +356,14 @@ if PASettings.Teleportation.Enabled then
 end
 
 Mouse.KeyDown:Connect(function(Key)
-    if not Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "52" then
+    if not Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and key == "0" then
         Sprinting = true
         Humanoid.WalkSpeed = PASettings.Animations.SprintAnimation.SprintSpeed
     end
 end)
 
 Mouse.KeyUp:Connect(function(Key)
-    if Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and tostring(string.byte(Key)) == "52" then
+    if Sprinting and PASettings.Animations.SprintAnimation.SprintingEnabled and key == "0" then
         Sprinting = false
         Humanoid.WalkSpeed = PASettings.WalkSpeed
     end
